@@ -1,0 +1,119 @@
+body{
+    background-color: #d7dade;
+}
+
+nav{
+    background-color: white;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    width: 100%;
+    box-shadow: 0px 2px 0px grey;
+}
+
+h1 {
+    display: inline-block;
+    margin-left: 10%;
+    font-size: 17px;
+    color: #1da1f2;
+}
+
+h2{
+    display: inline-block;
+    margin-left: 10%;
+    font-size: 17px;
+    color: #1da1f2;
+}
+
+h1:hover{
+    text-decoration: underline;
+}
+
+h2:hover{
+    text-decoration: underline;
+}
+
+h3{
+    width: 80px;
+    text-align: center;
+    display: inline-block;
+    top: 3%;
+    margin-left: 10%;
+    border-radius: 100px;
+    cursor:pointer;
+    background-color: #1da1f2;
+    color:white;
+    font-size: 17px;
+}
+
+h3:hover{
+    background-color: #3289ff;
+}
+
+form{
+    display: inline-block;
+    margin-left: 30%;
+    margin-top: 0px;
+}
+
+footer{
+    position: absolute;
+    color:grey;
+    top:28%;
+    left: 62%;
+    width: 500px;
+    height: 150px;
+
+}
+
+section{
+    background-color: white;
+    position: absolute;
+    top:11.2%;
+    left: 0px;
+    width: 100%;
+    box-shadow: 0px 2px 0px grey;
+}
+
+h4{
+    display: inline-block;
+    margin-left: 50px;
+    color: grey;
+    font-size: 17px;
+}
+
+h14{
+    display:inline-block;
+    margin-left: 50px;
+    font-size: 19px;
+    color:grey;
+    margin-left: 600px;
+}
+
+h14:hover{
+    color: #cbcbcb;
+}
+
+h5{
+    text-align: center;
+    font-size: 17px;
+    color: white;
+}
+
+article{
+    background-color: #1da1f2;
+    opacity: 80%;
+    position: absolute;
+    top: 28%;
+    left: 18%;
+    width: 400px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: grey;
+}
+
+footer a:visited{
+    color: grey;
+}
