@@ -1,6 +1,7 @@
 <?php
 namespace app;
 use app\src\App;
+use controller\UserController;
 class Routing
 {
     private $app;
@@ -22,5 +23,22 @@ class Routing
         $this->app->post('/handleCreate.php', [$city, 'createDBHandler']);
         // $this->app->post('/deleteCities.php', [$city, 'deleteDBHandlerCities']);
         */
+
+        $this->app->get('/', function() {
+        return $this->app->getService('render')('index');
+        });
+
+        $user = new UserController($this->app);
+
+        //Inscription
+        $this->app->get('/inscription.php', [$user, 'createHandler']);
+        $this->app->post('/traitement.php', [$user, 'createDBHandler']);
+
+        $this->app->get('/tl.php', function() {
+            return $this->app->getService('render')('tl');
+        });
+
+        $this->app->get('/tl/(\d+)', [$user, 'cityHandler']);
+
     }
 }

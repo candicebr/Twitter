@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Twitter</title>
-    <link rel="stylesheet"  href="css/style.css">
+    <link rel="stylesheet"  href="./view/css/style.css">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
         </p>
     </form>
 
-    <img src="img/bird.png" HEIGHT="740">
+    <img src="./view/img/bird.png" HEIGHT="740">
 
     <h1>Découvrez ce qui se passe dans le monde en temps réel.</h1>
 

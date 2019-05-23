@@ -55,7 +55,7 @@ class Request
      *
      */
     public function getUri() {
-        $uri = substr($_SERVER['REQUEST_URI'], 15) ?? '/';
+        $uri = substr($_SERVER['REQUEST_URI'], 16) ?? '/';
         if($pos = strpos($uri, '?')) {
             $uri = substr($uri, 0, $pos);
         }

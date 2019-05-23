@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Twitter</title>
-    <link rel="stylesheet"  href="css/styleTL.css">
+    <link rel="stylesheet"  href="./view/css/styleTL.css">
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 
 <!-- Rapide apperçu du profil -->
 <section>
-    <h4>Speudo</h4>
+    <h4><?= $params['user']->getPseudo(); ?></h4>
     <h5>@Nom d'utilisateur</h5>
     <h6>Tweets</h6><h6>Abonnements</h6><h6>Abonnés</h6>
     <h7>Nombre</h7><h7>Nombre</h7><h7>Nombre</h7>

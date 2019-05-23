@@ -104,7 +104,7 @@ class App
                 return $this->process($route, $request);
             }
         }
-        throw new Error('No routes available for this uri');
+        throw new \Error('No routes available for this uri');
     }
     /**
      * @param Route $route
@@ -122,10 +122,10 @@ class App
             }
             $response = new Response($content, $this->statusCode ?? 200);
             $response->send();
-        } catch (HttpException $e) {
+        } catch (\HttpException $e) {
             throw $e;
         } catch (\Exception $e) {
-            throw new Error('There was an error during the processing of your request');
+            throw new \Error('There was an error during the processing of your request');
         }
         /*catch (\Exception $e) {
             throw $e;
