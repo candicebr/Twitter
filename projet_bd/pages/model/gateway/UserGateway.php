@@ -68,7 +68,7 @@ class UserGateway
      */
     public function setPassword($password): void
     {
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     /**
@@ -93,6 +93,24 @@ class UserGateway
 
     private $info_perso;
 
+    private $birth;
+
+    /**
+     * @return mixed
+     */
+    public function getBirth()
+    {
+        return $this->birth;
+    }
+
+    /**
+     * @param mixed $birth
+     */
+    public function setBirth($birth): void
+    {
+        $this->birth = $birth;
+    }
+
     public function __construct(App $app)
     {
         $this->conn = $app->getService('database')->getConnection();
@@ -101,11 +119,12 @@ class UserGateway
 
     public function insert() : void
     {
-        $query = $this->conn->prepare('INSERT INTO user (user_name, pseudo, password) VALUES (:user_name, :pseudo, :password)');
+        $query = $this->conn->prepare('INSERT INTO user (user_name, pseudo, password, birth) VALUES (:user_name, :pseudo, :password, :birth)');
         $executed = $query->execute([
             ':user_name' => $this->user_name,
             ':pseudo' => $this->pseudo,
-            ':password' => $this->password
+            ':password' => $this->password,
+            ':birth' => $this->birth
         ]);
 
         if(!$executed) throw new \Error('Insert Failed');
@@ -148,15 +167,11 @@ class UserGateway
     public function hydrate(Array $element)
     {
         $this->id = $element['id'];
-        $this->name = $element['name'];
-        $this->country = $element['country'];
-        $this->life = $element['life'];
-
+        $this->user_name = $element['user_name'];
+        $this->pseudo = $element['pseudo'];
+        $this->password = $element['password'];
+        $this->password = $element['birth'];
     }
 
-    public function hydrateCountry(Array $element)
-    {
-        $this->country = $element['country'];
-    }
 
 }

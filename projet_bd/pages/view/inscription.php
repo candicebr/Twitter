@@ -23,8 +23,8 @@
             <input type="password" name="password" id="password" placeholder="password" size="30" maxlength="50" />
         </p>
      <p>
-         <label for="date de naissance">Votre date de naissance<br/></label>
-        <input type="date" name="date de naissance" id="date de naissance" placeholder="Date de naissance"/>
+         <label for="birth">Votre date de naissance<br/></label>
+        <input type="date" name="birth" id="birth" placeholder="birth"/>
      </p>
         <input type="submit" value="s'inscrire" />
     </form>

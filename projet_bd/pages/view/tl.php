@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +15,8 @@
 
 <!-- Rapide apperçu du profil -->
 <section>
-    <h4><?= $params['user']->getPseudo(); ?></h4>
-    <h5>@Nom d'utilisateur</h5>
+    <h4><?php echo $_SESSION['pseudo']; ?></h4>
+    <h5>@<?php echo $_SESSION['user_name']; ?></h5>
     <h6>Tweets</h6><h6>Abonnements</h6><h6>Abonnés</h6>
     <h7>Nombre</h7><h7>Nombre</h7><h7>Nombre</h7>
 </section>

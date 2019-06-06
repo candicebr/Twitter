@@ -25,7 +25,7 @@ class Routing
         */
 
         $this->app->get('/', function() {
-        return $this->app->getService('render')('index');
+        return $this->app->getService('render')('index1');
         });
 
         $user = new UserController($this->app);
@@ -34,11 +34,19 @@ class Routing
         $this->app->get('/inscription.php', [$user, 'createHandler']);
         $this->app->post('/traitement.php', [$user, 'createDBHandler']);
 
+
+        //Connection
+        $this->app->get('/index1.php', [$user, 'connectionHandler']);
+        $this->app->post('/traitementConnection.php', [$user, 'connectionDBHandler']);
+
+        //Accueil
         $this->app->get('/tl.php', function() {
             return $this->app->getService('render')('tl');
         });
 
-        $this->app->get('/tl/(\d+)', [$user, 'cityHandler']);
+        $this->app->get('/profilTweet.php', [$user, 'profilHandler']);
+
+
 
     }
 }

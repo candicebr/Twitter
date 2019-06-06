@@ -4,6 +4,7 @@
 namespace model\finder;
 
 use app\src\App;
+use Model\gateway\CityGateway;
 use Model\gateway\UserGateway;
 
 class UserFinder
@@ -25,17 +26,28 @@ class UserFinder
         $this->conn = $this->app->getService('database')->getConnection();
     }
 
-    public function findOneById($id)
+    public function findNameByName($user)
     {
-        $query = $this->conn->prepare('SELECT u.id, u.user_name, u.pseudo FROM user u WHERE u.id = :id'); // Création de la requête + utilisation order by pour ne pas utiliser sort
-        $query->execute([':id' => $id]); // Exécution de la requête
-        $element = $query->fetch(\PDO::FETCH_ASSOC);
+        $query = $this->conn->prepare('SELECT u.user_name FROM user u WHERE u.user_name = :user_name');
+        $query->execute([':user_name' => $user]); // Exécution de la requête
+        $elements = $query->fetch(\PDO::FETCH_ASSOC);
 
-        if ($element == null) return null;
-
-        $user = new UserGateway($this->app);
-        $user->hydrate($element);
+        if($elements == 0) return null;
 
         return $user;
     }
+
+    public function findPasswordByName($user)
+    {
+        $query = $this->conn->prepare('SELECT u.password FROM user u WHERE u.user_name = :user_name AND u.password=:password');
+        $query->execute([':user_password' => $user], [':user_name' => $user] ); // Exécution de la requête
+        $elements = $query->fetch(\PDO::FETCH_ASSOC);
+
+        if($elements == 0) return null;
+
+        return $user;
+    }
+
+
+
 }
