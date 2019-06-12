@@ -14,8 +14,8 @@
 
 <article>
     <h4>Ecrire un nouveau Tweet</h4>
-    <form method="post" action=".php">
-        <textarea name="tweet" id="tweet" placeholder="Quoi de neuf ?" rows="5" cols="28" maxlength="140"></textarea>
+    <form method="post" action="traitementTweet.php">
+        <textarea name="tweet_content" id="tweet_content" placeholder="Quoi de neuf ?" rows="5" cols="28" maxlength="140"></textarea>
         <input type="submit" value="Tweeter" />
     </form>
 </article>

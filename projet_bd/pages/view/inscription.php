@@ -19,6 +19,14 @@
      <p>
     <input type="text" name="user_name" id="user_name" placeholder="@nom d'utilisateur" size="30"/>
      </p>
+        <?php if(isset($_SESSION['flashInscription'])) {
+            echo "
+           <p style='color: red'>
+            " . $_SESSION['flashInscription'] . " 
+           </p>
+        ";
+        }
+        ?>
         <p>
             <input type="password" name="password" id="password" placeholder="password" size="30" maxlength="50" />
         </p>

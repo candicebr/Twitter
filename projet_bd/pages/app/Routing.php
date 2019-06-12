@@ -1,7 +1,11 @@
 <?php
 namespace app;
 use app\src\App;
+use controller\FollowController;
+use controller\LikesController;
+use controller\RetweetController;
 use controller\UserController;
+use controller\TweetController;
 class Routing
 {
     private $app;
@@ -29,6 +33,10 @@ class Routing
         });
 
         $user = new UserController($this->app);
+        $tweet = new TweetController($this->app);
+        $follow = new FollowController($this->app);
+        $like = new LikesController($this->app);
+        $retweet = new RetweetController($this->app);
 
         //Inscription
         $this->app->get('/inscription.php', [$user, 'createHandler']);
@@ -44,9 +52,33 @@ class Routing
             return $this->app->getService('render')('tl');
         });
 
+        //Profil
         $this->app->get('/profilTweet.php', [$user, 'profilHandler']);
+        //$this->app->get('/profilTweet.php', [$tweet, 'TweetHandler']);
+
+        //Recherche
+        $this->app->get('/recherche.php', [$user, 'rechercheHandler']);
+        $this->app->post('/traitementRecherche.php', [$user, 'rechercheDBHandler']);
+
+        //Tweeter
+        $this->app->get('/tweeter.php', [$tweet, 'createTweetHandler']);
+        $this->app->post('/traitementTweet.php', [$tweet, 'createTweetDBHandler']);
+
+        //EditerProfil
+        $this->app->get('/changeProfil.php', [$user, 'changeProfilHandler']);
+        $this->app->post('/traitementChangeProfil.php', [$user, 'changeProfilDBHandler']);
+
+        //Suivre
+        $this->app->get('/traitementSuivre.php/(\d+)', [$follow, 'abonnementDBHandler']);
+
+        //Like
+        $this->app->get('/traitementLike.php/(\d+)', [$like, 'likeDBHandler']);
 
 
+        //Retweet
+        $this->app->get('/traitementRetweet.php/(\d+)', [$retweet, 'retweetDBHandler']);
 
+        //SupprimerTweet
+        $this->app->get('/traitementSuppTweet.php/(\d+)', [$tweet, 'deleteTweetDBHandler']);
     }
 }

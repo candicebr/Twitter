@@ -4,7 +4,6 @@
 namespace model\finder;
 
 use app\src\App;
-use Model\gateway\CityGateway;
 use Model\gateway\UserGateway;
 
 class UserFinder
@@ -26,26 +25,73 @@ class UserFinder
         $this->conn = $this->app->getService('database')->getConnection();
     }
 
-    public function findNameByName($user)
+    public function findNameByName($name)
     {
         $query = $this->conn->prepare('SELECT u.user_name FROM user u WHERE u.user_name = :user_name');
-        $query->execute([':user_name' => $user]); // Exécution de la requête
-        $elements = $query->fetch(\PDO::FETCH_ASSOC);
+        $query->execute([':user_name' => $name]); // Exécution de la requête
+        $element = $query->fetch(\PDO::FETCH_ASSOC);
 
-        if($elements == 0) return null;
+        if($element == 0) return null;
 
-        return $user;
+       /* $user_name = new UserGateway($this->app);
+        $user_name->hydrate($element);*/
+
+        return $element;
     }
 
-    public function findPasswordByName($user)
+    public function findPasswordByName($name)
     {
-        $query = $this->conn->prepare('SELECT u.password FROM user u WHERE u.user_name = :user_name AND u.password=:password');
-        $query->execute([':user_password' => $user], [':user_name' => $user] ); // Exécution de la requête
-        $elements = $query->fetch(\PDO::FETCH_ASSOC);
+        $query = $this->conn->prepare('SELECT u.password FROM user u WHERE u.user_name = :user_name');
+        $query->execute([':user_name' => $name] ); // Exécution de la requête
+        $element = $query->fetch(\PDO::FETCH_ASSOC);
+
+        if($element == 0) return null;
+
+        return $element;
+    }
+
+    public function findUserByLogin($name)
+    {
+        $query = $this->conn->prepare('SELECT u.id, u.user_name, u.pseudo, u.birth, u.info_perso FROM user u WHERE u.user_name = :user_name');
+        $query->execute([':user_name' => $name] ); // Exécution de la requête
+        $element = $query->fetch(\PDO::FETCH_ASSOC);
+
+        if($element == 0) return null;
+
+        return $element;
+    }
+
+    public function findUserById($id)
+    {
+        $query = $this->conn->prepare('SELECT u.id, u.user_name, u.pseudo, u.birth, u.info_perso FROM user u WHERE u.id = :id');
+        $query->execute([':id' => $id] ); // Exécution de la requête
+        $element = $query->fetch(\PDO::FETCH_ASSOC);
+
+        if($element == 0) return null;
+
+        return $element;
+    }
+
+    public function FindUserByName($searchString)
+    {
+        $query = $this->conn->prepare('SELECT u.id, u.user_name, u.pseudo, u.info_perso, u.birth FROM user u WHERE u.user_name like :search ORDER BY u.user_name'); // Création de la requête + utilisation order by pour ne pas utiliser sort
+        $query->execute([':search' => '%' . $searchString .  '%']); // Exécution de la requête
+        $elements = $query->fetchAll(\PDO::FETCH_ASSOC);
 
         if($elements == 0) return null;
 
-        return $user;
+        $users = [];
+        $user = null;
+
+        foreach ($elements as $element)
+        {
+            $user = new UserGateway($this->app);
+            $user->hydrate($element);
+
+            $users[] = $user;
+        }
+
+        return $users;
     }
 
 

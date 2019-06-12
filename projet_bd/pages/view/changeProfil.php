@@ -19,7 +19,17 @@
 </section>
 
 <!--section où nous pourrons modifier les données de notre profil-->
-<?php include("editProfil.php");?>
+<article>
+    <form method="post" action="traitementChangeProfil.php">
+        <p>
+            <input type="text" name="pseudo" id="pseudo" placeholder="Pseudo" size="30" maxlength="10" />
+            <input type="text" name="info_perso" id="info_perso" placeholder="bio de l'utilisateur" size="30"/><br/>
+            <label for="birth">Votre date de naissance<br/></label>
+            <input type="date" name="birth" id="birth" placeholder="date de naissance"/>
+            <input type="submit" value="Enregistrer les modifications" />
+        </p>
+    </form>
+</article>
 
 <!-- Le pied de page -->
 

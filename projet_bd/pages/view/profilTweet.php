@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Twitter</title>
-    <link rel="stylesheet"  href="./view/css/styleProfil.css">
+    <link rel="stylesheet"  href="./iew/css/styleProfil.css">
 </head>
 
 <body>
@@ -24,7 +24,15 @@
 
 <!-- nos tweets et retweet-->
 
-<?php include ("tlTweet.php"); ?>
+<?php foreach ($params['tweets'] as $tweets) : ?>
+
+<li>
+    <?php if ($tweets->getTweetId() == $_SESSION['id']) {?> <a href="traitementSuppTweet.php/<?php echo $tweets->getTweetId() ?>">  <h14>Supprimer</h14></a> <?php }?>
+        <h8><?php echo $_SESSION['user_name']; ?></h8><h8>-</h8><h8><?php echo $tweets->getTweetDate();?></h8>
+        <h9><?php echo $tweets->getTweetContent(); ?></h9>
+        <a href="traitementRetweet.php/<?php echo $tweets->getTweetId() ?>">  <h10>Retweeter</h10> </a><h11>nombre </h11><a href="traitementLike.php/<?php echo $tweets->getTweetId() ?>">  <h12>J'aime </h12> </a><h13>nombre</h13>
+</li>
+<?php endforeach; ?>
 
 <!-- Le pied de page -->
 

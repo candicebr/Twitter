@@ -13,18 +13,19 @@
 
     <form method="post" action="traitementConnection.php">
         <p>
-            <input type="text" name="pseudo" id="name" placeholder="Nom d'utilisateur" size="30" maxlength="10" />
-            <input type="password" name="pass" id="pass" placeholder="Mot de passe" size="30"/>
+            <input type="text" name="user_name" id="user_name" placeholder="Nom d'utilisateur" size="30" maxlength="10" />
+            <input type="password" name="password" id="password" placeholder="Mot de passe" size="30"/>
             <input type="submit" value="Se Connecter" />
         </p>
     </form>
-    <?php if(isset($params['flash'])) {
+    <?php if(isset($_SESSION['flash'])) {
         echo "
-           <p style='color: green'>
-            " . $params['flash'] . " 
+           <p style='color: red'>
+            " . $_SESSION['flash'] . " 
            </p>
         ";
-    } ?>
+    }
+     ?>
 
     <img src="./view/img/bird.png" HEIGHT="740">
 

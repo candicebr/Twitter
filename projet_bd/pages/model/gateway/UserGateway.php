@@ -68,7 +68,8 @@ class UserGateway
      */
     public function setPassword($password): void
     {
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
+        $this->password=$password;
+        //$this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     /**
@@ -134,14 +135,14 @@ class UserGateway
 
     public function update() : void
     {
-        if(!$this->id) throw new \Error('Instance does not exist in base');
+        if(!$_SESSION['id']) throw new \Error('Instance does not exist in base');
 
-        $query = $this->conn->prepare('UPDATE city SET name = :name, country = :country, life = :life WHERE id = :id');
+        $query = $this->conn->prepare('UPDATE user SET pseudo = :pseudo, birth = :birth, info_perso = :info_perso WHERE id = :id');
         $executed = $query->execute([
-            ':name' => $this->name,
-            ':country' => $this->country,
-            ':life' => $this->life,
-            ':id' => $this->id
+            ':pseudo' => $this->pseudo,
+            ':birth' => $this->birth,
+            ':info_perso' => $this->info_perso,
+            ':id' => $_SESSION['id']
         ]);
 
         if(!$executed) throw new \Error('Update failed');
@@ -164,14 +165,14 @@ class UserGateway
 
     }
 
-    public function hydrate(Array $element)
+    public function hydrate($element)
     {
-        $this->id = $element['id'];
         $this->user_name = $element['user_name'];
+        $this->info_perso = $element['info_perso'];
         $this->pseudo = $element['pseudo'];
-        $this->password = $element['password'];
-        $this->password = $element['birth'];
-    }
+        $this->pseudo = $element['birth'];
+        $this->id = $element['id'];
 
+    }
 
 }

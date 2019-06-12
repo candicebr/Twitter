@@ -2,7 +2,7 @@
 
 <article>
     <h5>Suivre</h5>
-    <h6>Speudo</h6>
-    <h7>@nom utilisateur</h7>
-    <h8>Description</h8>
+    <h6><?php echo $user->getPseudo(); ?></h6>
+    <h7><?php echo $user->getUserName(); ?></h7>
+    <h8><?php echo $user->getInfoPerso(); ?></h8>
 </article>

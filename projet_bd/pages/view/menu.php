@@ -2,7 +2,7 @@
 
 <nav id="menu">
     <ul>
-        <a href="tl.php"><h1>Accueil</h1></a><form method="post" action="recherche.php">
+        <a href="tl.php"><h1>Accueil</h1></a><form method="post" action="traitementRecherche.php">
             <p>
                 <input type="text" name="recherche" id="recherche" placeholder="Recherchez sur Twitter"  />
                 <input type="submit" value="Rechercher" />
